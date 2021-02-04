@@ -16,3 +16,10 @@ The people who will use this application is anyone that wants to play the game o
 could help you make a lot of fake currency. This project interests me because I've always wanted to be able to code a
 using a language that I have never learned before. I also loved playing BlackJack when I was kid, and it is hard to find 
 a good BlackJack application online to play.
+
+## User Stories
+
+- As a user, I want to be able to hit when I need another card
+- As a user, I want to be able to stand when I don't want anymore cards
+- As a user, I want to be able to put bets down on my games
+- As a user, I want to be able to track my currency and see how much I have left 
