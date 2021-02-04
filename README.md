@@ -1,11 +1,18 @@
-# My Personal Project
+# BlackJack
 
-## A subtitle
+## Matthew Lai
 
-A *bulleted* list:
-- item 1
-- item 2
-- item 3
+**What Does The Application Do?**   
+This application will allow you to play the simple casino game of BlackJack.The player should be able to place bets and 
+hope to win against the house. This application will be single player only, against the house. Therefore, this
+application should be able to...
+- "hit" (draw a card from the deck)
+- "stand" (do not draw a card)
+- "bet" (place in game currency on your games)
+-  keep track of the currency the user has
 
-An example of text with **bold** and *italic* fonts.  Note that the IntelliJ markdown previewer doesn't seem to render 
-the bold and italic fonts correctly but they will appear correctly on GitHub.
+**Usage And Reasoning**  
+The people who will use this application is anyone that wants to play the game of BlackJack. It's a great pass time and 
+could help you make a lot of fake currency. This project interests me because I've always wanted to be able to code a
+using a language that I have never learned before. I also loved playing BlackJack when I was kid, and it is hard to find 
+a good BlackJack application online to play.
