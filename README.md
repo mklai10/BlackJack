@@ -21,5 +21,5 @@ a good BlackJack application online to play.
 
 - As a user, I want to be able to hit when I need another card
 - As a user, I want to be able to stand when I don't want anymore cards
-- As a user, I want to be able to put bets down on my games
+- As a user, I want to have a working deck of cards
 - As a user, I want to be able to track my currency and see how much I have left 
