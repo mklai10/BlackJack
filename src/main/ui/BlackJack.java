@@ -207,7 +207,7 @@ public class BlackJack {
     }
 
     // MODIFIES: this
-    // EFFECTS: prints out player wins, and reset fields
+    // EFFECTS: prints out playerw wins, and reset fields
     private void playerBust() {
         System.out.println("Bust, You Lose!");
         bank.winOrLost(false);
