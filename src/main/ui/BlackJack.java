@@ -1,7 +1,11 @@
 package ui;
 
 import model.*;
+import persistence.JsonReader;
+import persistence.JsonWriter;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Scanner;
 
 // BlackJack application
@@ -17,6 +21,9 @@ public class BlackJack {
     private String currentCardsInDealer;
     private String cardsInDealer;
     private Boolean dealerDone;
+    private JsonWriter jsonWriter;
+    private JsonReader jsonReader;
+    private static final String JSON_STORE = "./data/bank.json";
 
     // EFFECTS: runs the BlackJack application
     public BlackJack() {
@@ -40,6 +47,10 @@ public class BlackJack {
             } else if (input.equals("p")) {
                 startRoundDealer();
                 startRoundPlayer();
+            } else if (input.equals("s")) {
+                saveBank();
+            } else if (input.equals("l")) {
+                loadBank();
             }
         }
         System.out.println("See You Next Time");
@@ -51,12 +62,14 @@ public class BlackJack {
         System.out.println("\tBalance: " + bank.getBalance());
         System.out.println("\t press \"p\" to play");
         System.out.println("\t press \"q\" to quit");
+        System.out.println("\t press \"s\" save bank to file");
+        System.out.println("\t press \"l\" load bank from file");
     }
 
     // MODIFIES: this
     // EFFECTS: initializes the the dealer, bank, hand, deck and the fields
     private void initialize() {
-        bank = new Bank();
+        bank = new Bank("Player Bank");
         deck = new Deck();
         hand = new Hand();
         dealer = new Dealer();
@@ -68,6 +81,8 @@ public class BlackJack {
         currentCardsInDealer = "";
         dealerDone = false;
         scanner = new Scanner(System.in);
+        jsonWriter = new JsonWriter(JSON_STORE);
+        jsonReader = new JsonReader(JSON_STORE);
     }
 
     // MODIFIES: this
@@ -213,6 +228,29 @@ public class BlackJack {
         bank.winOrLost(false);
         hand.clear();
         dealer.clear();
+    }
+
+    // EFFECTS: saves the workroom to file
+    private void saveBank() {
+        try {
+            jsonWriter.open();
+            jsonWriter.write(bank);
+            jsonWriter.close();
+            System.out.println("Saved " + bank.getName() + " to " + JSON_STORE);
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to write to file: " + JSON_STORE);
+        }
+    }
+
+    // MODIFIES: this
+    // EFFECTS: loads workroom from file
+    private void loadBank() {
+        try {
+            bank = jsonReader.read();
+            System.out.println("Loaded " + bank.getName() + " from " + JSON_STORE);
+        } catch (IOException e) {
+            System.out.println("Unable to read from file: " + JSON_STORE);
+        }
     }
 
 }

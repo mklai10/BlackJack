@@ -1,11 +1,16 @@
 package model;
 
+import org.json.JSONObject;
+import persistence.Writable;
+
 // Represents a bank storing, adding, or removing currency
-public class Bank {
+public class Bank implements Writable {
     private static int balance;
+    private static String name;
 
     // EFFECTS: creates a bank a sets the a balance with $1000
-    public Bank() {
+    public Bank(String name) {
+        this.name = name;
         balance = 1000;
     }
 
@@ -25,8 +30,26 @@ public class Bank {
     }
 
     // EFFECTS: gets the current balance in the bank
-    public int getBalance() {
+    public static int getBalance() {
         return balance;
     }
 
+    // EFFECTS: gets the name of the bank
+    public String getName() {
+        return name;
+    }
+
+    // MODIFIES: this
+    // EFFECTS: changes balance to one in file
+    public void changeBalance(int balance) {
+        this.balance = balance;
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("name", name);
+        json.put("balance", balance);
+        return json;
+    }
 }
