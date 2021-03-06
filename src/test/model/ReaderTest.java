@@ -15,6 +15,7 @@ public class ReaderTest {
         JsonReader reader = new JsonReader("./data/doesNotexist.json");
         try {
             Bank bank = reader.read();
+            assertEquals(1000, bank.getBalance());
             fail();
         } catch (IOException e) {
             // success

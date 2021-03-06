@@ -5,7 +5,6 @@ import java.util.ArrayList;
 //Represents the cards in the players hand as an arraylist
 public class Hand {
     private final ArrayList<Card> hand;
-    private int sumPlayer = 0;
 
     // EFFECTS: creates an arraylist to represent the player's hand
     public Hand() {
@@ -21,8 +20,8 @@ public class Hand {
 
     // EFFECTS: gets the sum value of all the cards in the hand
     public int getHandValue() {
-        sumPlayer = 0;
-        for (Card card: hand) {
+        int sumPlayer = 0;
+        for (Card card : hand) {
             sumPlayer = sumPlayer + card.getValue();
         }
         return sumPlayer;

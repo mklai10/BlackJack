@@ -5,10 +5,11 @@ import persistence.Writable;
 
 // Represents a bank storing, adding, or removing currency
 public class Bank implements Writable {
-    private static int balance;
-    private static String name;
+    private int balance;
+    private final String name;
 
-    // EFFECTS: creates a bank a sets the a balance with $1000
+    // EFFECTS: creates a bank with the given name
+    //          and sets the balance with $1000
     public Bank(String name) {
         this.name = name;
         balance = 1000;
@@ -30,7 +31,7 @@ public class Bank implements Writable {
     }
 
     // EFFECTS: gets the current balance in the bank
-    public static int getBalance() {
+    public int getBalance() {
         return balance;
     }
 
@@ -45,6 +46,7 @@ public class Bank implements Writable {
         this.balance = balance;
     }
 
+    // EFFECTS: takes the fields in the bank and changes them to json
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();

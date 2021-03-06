@@ -5,7 +5,6 @@ import java.util.ArrayList;
 // Represents a dealers hand, (arraylist of cards)
 public class Dealer {
     private final ArrayList<Card> dealer;
-    private int sumDealer = 0;
 
     // EFFECTS: creates a an arraylist representing the hand of the dealer
     public Dealer() {
@@ -22,7 +21,7 @@ public class Dealer {
 
     // EFFECTS: returns the sum value of all the cards int eh dealer
     public int getDealerValue() {
-        sumDealer = 0;
+        int sumDealer = 0;
         for (Card card : dealer) {
             sumDealer = sumDealer + card.getValue();
         }

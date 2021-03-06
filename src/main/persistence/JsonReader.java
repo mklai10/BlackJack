@@ -12,8 +12,7 @@ import java.util.stream.Stream;
 // Represents a reader that reads Bank from JSON data stored in file
 // code gotten from JsonSerializationDemo
 public class JsonReader {
-    private String source;
-    private Number balance;
+    private final String source;
 
     // Effects: constructs reader to read from source file
     public JsonReader(String source) {
@@ -33,7 +32,7 @@ public class JsonReader {
         StringBuilder contentBuilder = new StringBuilder();
 
         try (Stream<String> stream = Files.lines(Paths.get(source), StandardCharsets.UTF_8)) {
-            stream.forEach(s -> contentBuilder.append(s));
+            stream.forEach(contentBuilder::append);
         }
 
         return contentBuilder.toString();
@@ -48,10 +47,9 @@ public class JsonReader {
     }
 
     // MODIFIES: bank
-    // EFFECTS: parses thingy from JSON object and adds it to workroom
+    // EFFECTS: parses balance from JSON object and adds it to Bank
     private void changeBalance(Bank bank, JSONObject jsonObject) {
-        String name = jsonObject.getString("name");
-        balance = jsonObject.getNumber("balance");
+        Number balance = jsonObject.getNumber("balance");
         bank.changeBalance((Integer) balance);
     }
 

@@ -2,8 +2,8 @@ package model;
 
 // Represents the cards in the game with its suit and value
 public class Card {
-    private int cardType;
-    private int cardValue;
+    private final int cardType;
+    private final int cardValue;
 
     // REQUIRES:  1 <= cardNumber <= 13, and 1 <= suit <=4
     // EFFECTS: Creates a card with it suit and number,
@@ -31,10 +31,6 @@ public class Card {
     // REQUIRES: card to have a value between and including 1 and 13
     // EFFECTS: gets the value of the card, if anything above 10 the value becomes 10
     public int getValue() {
-        if (cardValue > 10) {
-            return 10;
-        } else {
-            return cardValue;
-        }
+        return Math.min(cardValue, 10);
     }
 }

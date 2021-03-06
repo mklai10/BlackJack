@@ -17,11 +17,9 @@ public class DeckTest {
     @Test
     public void testShuffleDeck() {
         Deck deck = new Deck();
-        Deck deckUnshuffled = new Deck();
+        Deck deckNotShuffled = new Deck();
         deck.shuffle();
-        Card card1 = deck.get(0);
-        Card card2 = deckUnshuffled.get(0);
-        assertNotSame(deck, deckUnshuffled);
+        assertNotSame(deck, deckNotShuffled);
     }
 
     @Test
