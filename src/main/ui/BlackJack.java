@@ -220,7 +220,8 @@ public class BlackJack extends JFrame {
         System.out.println("Player: ");
         for (int i = hand.size() - 1; i >= 0; i--) {
             Card printCard = hand.get(i);
-            String suit = printCard.getSuit();
+            String suit = null;
+            suit = printCard.getSuit();
             int val = printCard.getValue();
             String value = String.valueOf(val);
             currentCardsInPlayer = currentCardsInPlayer + " " + suit + value;
@@ -242,7 +243,8 @@ public class BlackJack extends JFrame {
         System.out.println("Dealer: ");
         for (int i = dealer.size() - 1; i >= 0; i--) {
             Card printCard = dealer.get(i);
-            String suit = printCard.getSuit();
+            String suit = null;
+            suit = printCard.getSuit();
             int val = printCard.getValue();
             String value = String.valueOf(val);
             currentCardsInDealer = currentCardsInDealer + " " + suit + value;
@@ -291,7 +293,8 @@ public class BlackJack extends JFrame {
         dealer.hit(deck);
         for (int i = dealer.size() - 1; i >= 0; i--) {
             Card printCard = dealer.get(i);
-            String suit = printCard.getSuit();
+            String suit = null;
+            suit = printCard.getSuit();
             int val = printCard.getValue();
             String value = String.valueOf(val);
             currentCardsInDealer = currentCardsInDealer + " " + suit + value;
@@ -320,7 +323,8 @@ public class BlackJack extends JFrame {
         hand.hit(deck);
         for (int i = hand.size() - 1; i >= 0; i--) {
             Card printCard = hand.get(i);
-            String suit = printCard.getSuit();
+            String suit = null;
+            suit = printCard.getSuit();
             int val = printCard.getValue();
             String value = String.valueOf(val);
             currentCardsInPlayer = currentCardsInPlayer + " " + suit + value;

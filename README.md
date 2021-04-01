@@ -25,3 +25,7 @@ a good BlackJack application online to play.
 - As a user, I want to be able to track my currency and see how much I have left 
 - As a user, I want to be able to save my currency
 - As a user, I want to be able to load my currency from file
+
+## Phase 4: Task 2
+
+Made the Card constructor in the Card class more robust as well as made the drawFromDeck method in the Deck class more robust.

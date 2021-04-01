@@ -1,5 +1,9 @@
 package model;
 
+import exceptions.EmptyDeckException;
+import exceptions.SuitNotExistException;
+import exceptions.ValueNotExistException;
+
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -12,7 +16,13 @@ public class Deck {
         deck = new ArrayList<>();
         for (int s = 1; s <= 4; s++) {
             for (int n = 1; n <= 13; n++) {
-                deck.add(new Card(s, n));
+                try {
+                    deck.add(new Card(s, n));
+                } catch (SuitNotExistException e) {
+                    System.out.println("suit does not exist");
+                } catch (ValueNotExistException e) {
+                    System.out.println("value does not exits");
+                }
             }
         }
     }
@@ -28,17 +38,18 @@ public class Deck {
         return currentDeck;
     }
 
-    // REQUIRES: deck not be empty
     // MODIFIES: this
     // EFFECTS: shuffles the arraylist
     public void shuffle() {
         Collections.shuffle(deck);
     }
 
-    // REQUIRES: deck not be empty
     // MODIFIES: this
     // EFFECTS: draws the first card of the shuffled deck
-    public Card drawFromDeck() {
+    public Card drawFromDeck() throws EmptyDeckException {
+        if (deck.size() == 0) {
+            throw new EmptyDeckException();
+        }
         return deck.remove(0);
     }
 

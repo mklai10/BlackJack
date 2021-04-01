@@ -1,8 +1,11 @@
 package model;
 
+import exceptions.SuitNotExistException;
+import exceptions.ValueNotExistException;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 class CardTest {
 
@@ -35,11 +38,62 @@ class CardTest {
     }
 
     @Test
-    public void testNoSuit() {
-        Card noSuit = new Card(5, 10);
-        assertNotSame("S", noSuit.getSuit());
-        assertNotSame("D", noSuit.getSuit());
-        assertNotSame("H", noSuit.getSuit());
-        assertNotSame("C", noSuit.getSuit());
+    public void testCardSuitTooLarge() {
+        try {
+            Card card = new Card(5, 4);
+            fail();
+        } catch (SuitNotExistException e) {
+            // success
+        } catch (ValueNotExistException e) {
+           fail();
+        }
+    }
+
+    @Test
+    public void testCardSuitTooSmall() {
+        try {
+            Card card = new Card(0, 4);
+            fail();
+        } catch (SuitNotExistException e) {
+            // success
+        } catch (ValueNotExistException e) {
+            fail();
+        }
+    }
+
+    @Test
+    public void testCardValueTooLarge() {
+        try {
+            Card card = new Card(2, 14);
+            fail();
+        } catch (SuitNotExistException e) {
+            fail();
+        } catch (ValueNotExistException e) {
+            // success
+        }
+    }
+
+    @Test
+    public void testCardValueTooSmall() {
+        try {
+            Card card = new Card(2, 0);
+            fail();
+        } catch (SuitNotExistException e) {
+            fail();
+        } catch (ValueNotExistException e) {
+            // success
+        }
+    }
+
+    @Test
+    public void testCardValueAndSuitNotExist() {
+        try {
+            Card card = new Card(5, 14);
+            fail();
+        } catch (SuitNotExistException e) {
+            // success
+        } catch (ValueNotExistException e) {
+            fail();
+        }
     }
 }

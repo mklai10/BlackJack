@@ -1,5 +1,7 @@
 package model;
 
+import exceptions.EmptyDeckException;
+
 import java.util.ArrayList;
 
 //Represents the cards in the players hand as an arraylist
@@ -14,7 +16,12 @@ public class Hand {
     // MODIFIES: this, Deck
     // EFFECTS: removes the first card in the deck and places it into the hand
     public void hit(Deck deck) {
-        Card cardDrawn = deck.drawFromDeck();
+        Card cardDrawn = null;
+        try {
+            cardDrawn = deck.drawFromDeck();
+        } catch (EmptyDeckException e) {
+            System.out.println("the deck is empty");
+        }
         this.placeInHand(cardDrawn);
     }
 

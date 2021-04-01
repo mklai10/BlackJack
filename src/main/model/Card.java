@@ -1,19 +1,26 @@
 package model;
 
+import exceptions.SuitNotExistException;
+import exceptions.ValueNotExistException;
+
 // Represents the cards in the game with its suit and value
 public class Card {
     private final int cardType;
     private final int cardValue;
 
-    // REQUIRES:  1 <= cardNumber <= 13, and 1 <= suit <=4
     // EFFECTS: Creates a card with it suit and number,
     //          11 represents jack, 12 queen, and 13 king
-    Card(int suit, int cardNumber) {
+    Card(int suit, int cardNumber) throws SuitNotExistException, ValueNotExistException {
+        if (suit > 4 || suit < 1) {
+            throw new SuitNotExistException();
+        }
+        if (cardNumber > 13 || cardNumber < 1) {
+            throw new ValueNotExistException();
+        }
         this.cardValue = cardNumber;
         cardType = suit;
     }
 
-    // REQUIRES: card to have a suit between and including 1 and 4
     // EFFECTS: turns the number suit from a card into the String representation of a suit
     public String getSuit() {
         if (cardType == 1) {

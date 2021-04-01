@@ -1,5 +1,7 @@
 package model;
 
+import exceptions.EmptyDeckException;
+
 import java.util.ArrayList;
 
 // Represents a dealers hand, (arraylist of cards)
@@ -11,11 +13,15 @@ public class Dealer {
         dealer = new ArrayList<>();
     }
 
-    // REQUIRES: the deck to be above size 0
     // MODIFIES: this, Deck
     // EFFECTS: removes the first card from the given deck and adds it into the dealer
     public void hit(Deck deck) {
-        Card cardDrawn = deck.drawFromDeck();
+        Card cardDrawn = null;
+        try {
+            cardDrawn = deck.drawFromDeck();
+        } catch (EmptyDeckException e) {
+            System.out.println("the deck is empty");
+        }
         this.placeInDealer(cardDrawn);
     }
 
@@ -28,7 +34,6 @@ public class Dealer {
         return sumDealer;
     }
 
-    // REQUIRES: the card to exist
     // MODIFIES: this
     // EFFECTS: places the given card into the dealers hand
     public void placeInDealer(Card card) {

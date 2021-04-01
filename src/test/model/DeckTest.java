@@ -1,9 +1,9 @@
 package model;
 
+import exceptions.EmptyDeckException;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotSame;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class DeckTest {
 
@@ -11,7 +11,11 @@ public class DeckTest {
     public void testDeck() {
         Deck deck = new Deck();
         assertEquals(deck.size(), 52);
-        assertEquals(deck.drawFromDeck().getValue(), 1);
+        try {
+            assertEquals(deck.drawFromDeck().getValue(), 1);
+        } catch (EmptyDeckException e) {
+            fail();
+        }
     }
 
     @Test
@@ -31,9 +35,32 @@ public class DeckTest {
     }
 
     @Test
-    public void testDrawFromDeck() {
+    public void testDrawFromDeckNotEmpty() {
         Deck deck = new Deck();
-        deck.drawFromDeck();
-        assertEquals(deck.size(), 51);
+        try {
+            deck.drawFromDeck();
+            assertEquals(deck.size(), 51);
+        } catch (Exception e) {
+            fail();
+        }
+    }
+
+    @Test
+    public void testDrawFromDeckEmpty() {
+        Deck deck = new Deck();
+        for (int i = 1; i <= 52; i++) {
+            try {
+                deck.drawFromDeck();
+            } catch (EmptyDeckException e) {
+                fail();
+            }
+        }
+        assertEquals(0, deck.size());
+        try {
+            deck.drawFromDeck();
+        } catch (EmptyDeckException e) {
+            // success
+            assertEquals(0, deck.size());
+        }
     }
 }
