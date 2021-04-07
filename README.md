@@ -30,3 +30,10 @@ a good BlackJack application online to play.
 
 Made the Card constructor in the Card class more robust as well as made the drawFromDeck method in the Deck class more robust.
 
+## Phase 4: Task 3
+
+ - One major thing I noticed is that the hand and dealer classes are exactly the same. Therefore, I wouldn't need one of the classes.
+ - Another thing i realized was that the Main class is not needed, the main could just contain all the code in BlackJack.
+ - Also, the dealer class and the Hand class could be subclasses of Deck reducing the coupling. 
+ - If Hand and Dealer were subclasses of Deck then Card could be a subclass of those, once again reducing coupling.
+ - There are many functions that are called and created within the BlackJack class which could be refactored out to increase cohesion.
