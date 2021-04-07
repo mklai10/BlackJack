@@ -23,7 +23,6 @@ public class BlackJack extends JFrame {
     private Hand hand;
     private Dealer dealer;
     private Deck deck;
-    //    private Scanner scanner;
     private String currentCardsInPlayer;
     private String cardsInHand;
     private String currentCardsInDealer;
@@ -67,7 +66,6 @@ public class BlackJack extends JFrame {
         currentCardsInPlayer = "";
         cardsInDealer = "";
         currentCardsInDealer = "";
-//        scanner = new Scanner(System.in);
         jsonWriter = new JsonWriter(JSON_STORE);
         jsonReader = new JsonReader(JSON_STORE);
     }
@@ -97,23 +95,6 @@ public class BlackJack extends JFrame {
         running = true;
         reset = false;
         startGame();
-//        String input;
-
-//        while (running) {
-
-//            input = scanner.next();
-
-//            if (input.equals("q")) {
-//                running = false;
-//            } else if (input.equals("p")) {
-//                startRoundDealer();
-//                startRoundPlayer();
-//            } else if (input.equals("s")) {
-//                saveBank();
-//            } else if (input.equals("l")) {
-//                loadBank();
-//            }
-//        }
         System.out.println("See You Next Time");
     }
 
@@ -169,13 +150,6 @@ public class BlackJack extends JFrame {
         bustLabel.setVisible(false);
         setEnable();
 
-//        System.out.println("\nWelcome To BlackJack");
-//        System.out.println("\tBalance: " + bank.getBalance());
-//        System.out.println("\t press \"p\" to play");
-//        System.out.println("\t press \"q\" to quit");
-//        System.out.println("\t press \"s\" save bank to file");
-//        System.out.println("\t press \"l\" load bank from file");
-
         startRoundDealer();
         startRoundPlayer();
 
@@ -230,7 +204,6 @@ public class BlackJack extends JFrame {
         cardsInHandLabel.setText("Player: " + cardsInHand);
         System.out.println(cardsInHand);
         currentCardsInPlayer = "";
-//        hitOrStandPlayer();
     }
 
     // MODIFIES: this
@@ -272,22 +245,6 @@ public class BlackJack extends JFrame {
     }
 
     // MODIFIES: this
-    // EFFECTS: decides whether the dealer should hit or stand
-//    private void hitOrStandPlayer() {
-//        if (hand.getHandValue() > 21) {
-//            playerBust();
-//        } else {
-//            System.out.println("(h)it or (s)tand");
-//            String input = scanner.next();
-//            if (input.equals("h")) {
-//                hitPlayer();
-//            } else if (input.equals("s")) {
-//                hitOrStandDealer();
-//            }
-//        }
-//    }
-
-    // MODIFIES: this
     // EFFECTS: adds a card to the dealer and prints out the dealer and player's hands
     public void hitDealer() {
         dealer.hit(deck);
@@ -306,19 +263,11 @@ public class BlackJack extends JFrame {
         System.out.println("Player: ");
         System.out.println(cardsInHand);
         currentCardsInDealer = "";
-//        System.out.println("enter \"n\" to continue");
-//        String input = scanner.next();
-//        if (input.equals("n")) {
-//            hitOrStandDealer();
-//        }
     }
 
     // MODIFIES: this
     // EFFECTS: adds a card to the player and prints out the dealer and player's hands
     public void hitPlayer() {
-//        if (hand.getHandValue() > 21) {
-//            playerBust();
-//        } else {
         hitButton.setEnabled(false);
         hand.hit(deck);
         for (int i = hand.size() - 1; i >= 0; i--) {
@@ -337,20 +286,11 @@ public class BlackJack extends JFrame {
         System.out.println(cardsInHand);
         cardsInHandLabel.setText("Player: " + cardsInHand);
         currentCardsInPlayer = "";
-//            if (hand.getHandValue() > 21) {
-//                playerBust();
-//            }
-//        }
     }
 
     // MODIFIES: this
     // EFFECTS: causes the dealer to win playing the correct sound and showing right label
     public void standing() {
-//        if (dealer.getDealerValue() < hand.getHandValue()) {
-//            System.out.println("Player Wins!");
-//            bank.winOrLost(true);
-//            balance.setText("Balance: " + String.valueOf(bank.getBalance()));
-//        } else {
         continueButton.setVisible(false);
         playSound(System.getProperty("user.dir") + sep
                 + "resources" + sep + "lost.wav");
@@ -359,7 +299,6 @@ public class BlackJack extends JFrame {
         balance.setText("Balance: " + bank.getBalance());
         dealerWin.setVisible(true);
         reset = true;
-//        }
     }
 
     // MODIFIES: this
@@ -368,8 +307,6 @@ public class BlackJack extends JFrame {
         System.out.println("Dealer Bust, You Win!");
         bank.winOrLost(true);
         balance.setText("Balance: " + bank.getBalance());
-//        hand.clear();
-//        dealer.clear();
         reset = true;
         continueButton.setVisible(false);
         bustLabel.setVisible(true);
