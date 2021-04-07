@@ -11,7 +11,12 @@ class CardTest {
 
     @Test
     public void testCardValue() {
-        Deck deck = new Deck();
+        Deck deck = null;
+        try {
+            deck = new Deck();
+        } catch (SuitNotExistException | ValueNotExistException e) {
+            fail();
+        }
         Card king = deck.get(12);
         Card jack = deck.get(10);
         Card ten = deck.get(9);
@@ -26,7 +31,12 @@ class CardTest {
 
     @Test
     public void testSuit() {
-        Deck deck = new Deck();
+        Deck deck = null;
+        try {
+            deck = new Deck();
+        } catch (SuitNotExistException | ValueNotExistException e) {
+            fail();
+        }
         Card spades = deck.get(0);
         Card hearts = deck.get(13);
         Card diamond = deck.get(26);

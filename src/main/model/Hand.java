@@ -15,13 +15,9 @@ public class Hand {
 
     // MODIFIES: this, Deck
     // EFFECTS: removes the first card in the deck and places it into the hand
-    public void hit(Deck deck) {
+    public void hit(Deck deck) throws EmptyDeckException {
         Card cardDrawn = null;
-        try {
-            cardDrawn = deck.drawFromDeck();
-        } catch (EmptyDeckException e) {
-            System.out.println("the deck is empty");
-        }
+        cardDrawn = deck.drawFromDeck();
         this.placeInHand(cardDrawn);
     }
 

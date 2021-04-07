@@ -1,5 +1,8 @@
 package ui;
 
+import exceptions.EmptyDeckException;
+import exceptions.SuitNotExistException;
+import exceptions.ValueNotExistException;
 import model.*;
 import persistence.JsonReader;
 import persistence.JsonWriter;
@@ -57,7 +60,13 @@ public class BlackJack extends JFrame {
     //          as wel as reader and writer
     private void initializeGame() {
         bank = new Bank("Player Bank");
-        deck = new Deck();
+        try {
+            deck = new Deck();
+        } catch (SuitNotExistException e) {
+            System.out.println("suit error");
+        } catch (ValueNotExistException e) {
+            System.out.println("value error");
+        }
         hand = new Hand();
         dealer = new Dealer();
         hand.clear();
@@ -189,8 +198,12 @@ public class BlackJack extends JFrame {
     // EFFECTS: starts the round for the player and displays it's cards
     private void startRoundPlayer() {
         deck.shuffle();
-        hand.hit(deck);
-        hand.hit(deck);
+        try {
+            hand.hit(deck);
+            hand.hit(deck);
+        } catch (EmptyDeckException e) {
+            System.out.println("deck is empty");
+        }
         System.out.println("Player: ");
         for (int i = hand.size() - 1; i >= 0; i--) {
             Card printCard = hand.get(i);
@@ -211,8 +224,12 @@ public class BlackJack extends JFrame {
     private void startRoundDealer() {
 
         deck.shuffle();
-        dealer.hit(deck);
-        dealer.hit(deck);
+        try {
+            dealer.hit(deck);
+            dealer.hit(deck);
+        } catch (EmptyDeckException e) {
+            System.out.println("deck is empty");
+        }
         System.out.println("Dealer: ");
         for (int i = dealer.size() - 1; i >= 0; i--) {
             Card printCard = dealer.get(i);
@@ -247,7 +264,11 @@ public class BlackJack extends JFrame {
     // MODIFIES: this
     // EFFECTS: adds a card to the dealer and prints out the dealer and player's hands
     public void hitDealer() {
-        dealer.hit(deck);
+        try {
+            dealer.hit(deck);
+        } catch (EmptyDeckException e) {
+            System.out.println("deck is empty");
+        }
         for (int i = dealer.size() - 1; i >= 0; i--) {
             Card printCard = dealer.get(i);
             String suit = null;
@@ -269,7 +290,11 @@ public class BlackJack extends JFrame {
     // EFFECTS: adds a card to the player and prints out the dealer and player's hands
     public void hitPlayer() {
         hitButton.setEnabled(false);
-        hand.hit(deck);
+        try {
+            hand.hit(deck);
+        } catch (EmptyDeckException e) {
+            System.out.println("deck is empty");
+        }
         for (int i = hand.size() - 1; i >= 0; i--) {
             Card printCard = hand.get(i);
             String suit = null;

@@ -12,26 +12,21 @@ public class Deck {
     private final ArrayList<Card> deck;
 
     // EFFECTS: creates an entire deck of cards with suit and number as an arraylist
-    public Deck() {
+    public Deck() throws SuitNotExistException, ValueNotExistException {
         deck = new ArrayList<>();
         for (int s = 1; s <= 4; s++) {
             for (int n = 1; n <= 13; n++) {
-                try {
-                    deck.add(new Card(s, n));
-                } catch (SuitNotExistException e) {
-                    System.out.println("suit does not exist");
-                } catch (ValueNotExistException e) {
-                    System.out.println("value does not exits");
-                }
+                deck.add(new Card(s, n));
             }
         }
     }
 
     // MODIFIES: this
     // EFFECTS: if the deck is empty make a new deck and replace the old one
-    public Deck fillDeckIfEmpty(Deck currentDeck) {
+    public Deck fillDeckIfEmpty(Deck currentDeck) throws SuitNotExistException, ValueNotExistException {
         if (currentDeck.size() == 0) {
-            Deck newDeck = new Deck();
+            Deck newDeck = null;
+            newDeck = new Deck();
             newDeck.shuffle();
             currentDeck = newDeck;
         }

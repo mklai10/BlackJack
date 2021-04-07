@@ -1,5 +1,6 @@
 package model;
 
+import exceptions.EmptyDeckException;
 import exceptions.SuitNotExistException;
 import exceptions.ValueNotExistException;
 import org.junit.jupiter.api.Test;
@@ -11,11 +12,20 @@ public class HandTest {
 
     @Test
     public void testHandHit() {
-        Deck deck = new Deck();
+        Deck deck = null;
+        try {
+            deck = new Deck();
+        } catch (SuitNotExistException | ValueNotExistException e) {
+            fail();
+        }
         Hand handEmpty = new Hand();
         assertEquals(handEmpty.getHandValue(), 0);
-        handEmpty.hit(deck);
-        assertEquals(handEmpty.getHandValue(), 1);
+        try {
+            handEmpty.hit(deck);
+            assertEquals(handEmpty.getHandValue(), 1);
+        } catch (EmptyDeckException e) {
+            fail();
+        }
     }
 
     @Test
@@ -31,6 +41,23 @@ public class HandTest {
             assertEquals(hand.getHandValue(), 0);
         } catch (SuitNotExistException | ValueNotExistException e) {
             fail();
+        }
+    }
+
+    @Test
+    public void testHitHandEmptyDeck() {
+        Deck deck = null;
+        try {
+            deck = new Deck();
+        } catch (SuitNotExistException | ValueNotExistException e) {
+            fail();
+        }
+        deck.clear();
+        Hand hand = new Hand();
+        try {
+            hand.hit(deck);
+        } catch (EmptyDeckException e) {
+            // success
         }
     }
 }

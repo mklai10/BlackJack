@@ -29,10 +29,9 @@ public class Card {
             return "H";
         } else if (cardType == 3) {
             return "D";
-        } else if (cardType == 4) {
+        } else {
             return "C";
         }
-        return null;
     }
 
     // REQUIRES: card to have a value between and including 1 and 13
